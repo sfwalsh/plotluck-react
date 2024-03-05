@@ -1,0 +1,3 @@
+export const SERVICE_KEYS = {
+    READINGLIST_REPOSITORY: Symbol("READINGLIST_REPOSITORY"),
+  };
