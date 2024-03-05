@@ -45,6 +45,11 @@ const ReadingList = () => {
         refreshData();
     }
 
+    const editItem = async (item: ReadingListItem) => {
+        await readingListService.update({ book: {...item.book, title: "Updated!"} })
+        refreshData();
+    }
+
     return (
         <>
             <nav>
@@ -66,6 +71,7 @@ const ReadingList = () => {
                             item={item}
                             key={item.book.isbn}
                             onDelete={deleteItem}
+                            onEdit={editItem}
                         />
                     })
                 }

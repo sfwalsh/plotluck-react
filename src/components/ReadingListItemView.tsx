@@ -3,10 +3,11 @@ import { ReadingStatus } from "../types/ReadingStatus.type"
 
 type ReadingListItemViewProps = {
   onDelete: (id: string) => void;
+  onEdit: (item: ReadingListItem) => void;
   item: ReadingListItem;
 };
 
-const ReadingListItemView = ({ item, onDelete }: ReadingListItemViewProps) => {
+const ReadingListItemView = ({ item, onDelete, onEdit }: ReadingListItemViewProps) => {
 
     function getTitle(status: ReadingStatus): string {
         switch (status) {
@@ -28,6 +29,7 @@ const ReadingListItemView = ({ item, onDelete }: ReadingListItemViewProps) => {
         <h3>{getTitle(item.status)}</h3>
 
         <button onClick={() => onDelete(item.book.isbn)}>Delete</button>
+        <button onClick={() => onEdit(item)}>Edit</button>
         </>
     )
 };

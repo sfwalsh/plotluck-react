@@ -51,6 +51,7 @@ export class ReadingListRepository implements IRepository<ReadingListItem> {
             } else {
                 throw new Error("no matching item found");
             }
+            this.updateItems(items);
             return Promise.resolve();
         } catch (error) {
             return Promise.reject(error);
