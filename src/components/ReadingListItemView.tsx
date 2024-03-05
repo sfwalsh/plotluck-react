@@ -20,7 +20,6 @@ export default function ReadingListItemView({ item }: { item: ReadingListItem })
         <>
         <h1>{item.book.title}</h1>
         <h2>{item.book.author}</h2>
-        <h3>{item.book.isbn}</h3>
         <h3>{getTitle(item.status)}</h3>
         </>
     )

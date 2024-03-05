@@ -9,7 +9,7 @@ export type ReadingListItem = {
 export function createDummyReadingListItem(): ReadingListItem {
     return {
       book: {
-        isbn: '123',
+        isbn: crypto.randomUUID(),
         title: 'The City & Its Uncertain Walls',
         author: 'Haruki Murakami',
       },

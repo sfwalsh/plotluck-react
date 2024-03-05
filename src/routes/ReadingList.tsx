@@ -10,6 +10,7 @@ import { IRepository } from "../repository/IRepository.interface";
 import { SERVICE_KEYS } from "../DI/service-keys.const";
 
 import { createDummyReadingListItem } from "../types/ReadingListItem.type";
+import { Link } from "react-router-dom";
 
 export default function ReadingList() {
 
@@ -29,19 +30,17 @@ export default function ReadingList() {
             }
         };
         fetchData();
-    });
-    // the empty dependency array in the useEffect hook tells React that the effect doesn't depend on any values or props
-    // that might change during the component's lifetime
+    }, [readingListService]);
 
     return (
         <>
             <nav>
                 <ul>
                     <li>
-                        <a href={`/whoops/1`}>Error Page Test</a>
+                        <Link to={`/whoops/1`}>Error Page Test</Link>
                     </li>
                     <li>
-                        <a href={`/add`}>Add Item</a>
+                        <Link to={`/add`}>Add Item</Link>
                     </li>
                 </ul>
             </nav>
@@ -50,7 +49,7 @@ export default function ReadingList() {
                 {items.length === 0 && <ReadingListEmptyState />}
                 {
                     items.map(item => {
-                        return <ReadingListItemView item={item} />
+                        return <ReadingListItemView item={item} key={item.book.isbn}/>
                     })
                 }
             </ul>
