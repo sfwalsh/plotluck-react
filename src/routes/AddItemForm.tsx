@@ -3,7 +3,7 @@ import { IRepository } from "../repository/IRepository.interface"
 import { ReadingListItem } from "../types/ReadingListItem.type"
 import { SERVICE_KEYS } from "../DI/service-keys.const"
 
-import { FormEvent, useState } from "react"
+import { FormEvent, useCallback, useEffect, useState } from "react"
 
 import { createDummyReadingListItem } from "../types/ReadingListItem.type"
 import { useNavigate } from "react-router-dom"
@@ -17,24 +17,35 @@ export default function AddItemForm() {
     const [author, setAuthor] = useState("");
     const [readingStatus, setReadingStatus] = useState(ReadingStatus.Unread);
 
+
+    const [formValid, setFormValid] = useState(true);
+
     const readingStatusOptions: { [key: string]: string } = {
         [ReadingStatus.Read]: 'Read', // [] rather than literal string maintains a connection between the enum and the options
         [ReadingStatus.Unread]: 'Unread',
         [ReadingStatus.InProgress]: 'In Progress',
     };
 
-    function isValidAuthor(): Boolean {
-        return author.length >= 3
-    }
+    const isValidTitle = useCallback(() => {
+        return title.length >= 3;
+    }, [title]);
 
-    function isValidTitle(): Boolean {
-        return title.length >= 3
-    }
+    const isValidAuthor = useCallback(() => {
+        return author.length >= 3;
+    }, [author]);
 
     function resetForm() {
         setTitle("");
         setAuthor("");
     }
+
+    // updates form's submit button
+    useEffect(() => {
+        const validTitle = isValidTitle();
+        const validAuthor = isValidAuthor();
+
+        setFormValid((prevValid) => validTitle && validAuthor);
+    }, [isValidTitle, isValidAuthor]);
 
     async function handleSubmit(e: FormEvent) {
         e.preventDefault() // prevents refresh page
@@ -79,7 +90,9 @@ export default function AddItemForm() {
             </div>
 
             <p>
-                <button>Add</button>
+                <button type="submit" disabled={!formValid}>
+                    Add
+                </button>
                 <button
                     type="button"
                     onClick={() => {
