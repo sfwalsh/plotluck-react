@@ -5,7 +5,6 @@ import { SERVICE_KEYS } from "../DI/service-keys.const"
 
 import { FormEvent, useCallback, useEffect, useState } from "react"
 
-import { createDummyReadingListItem } from "../types/ReadingListItem.type"
 import { useNavigate } from "react-router-dom"
 import { ReadingStatus } from "../types/ReadingStatus.type"
 
@@ -41,20 +40,24 @@ const AddItemForm = () => {
         setFormValid((prevValid) => validTitle && validAuthor);
     }, [isValidTitle, isValidAuthor]);
 
-    function resetForm() {
+    const resetForm = () => {
         setTitle("");
         setAuthor("");
-    }
+    };
 
     async function handleSubmit(e: FormEvent) {
         e.preventDefault() // prevents refresh page
         if (!isValidTitle() || !isValidAuthor()) return
-        const dummyItem: ReadingListItem = createDummyReadingListItem();
-        dummyItem.book.title = title
-        dummyItem.book.author = author
-        dummyItem.status = readingStatus
+        const item: ReadingListItem = {
+            book: {
+                author: author,
+                title: title,
+                isbn: crypto.randomUUID()
+            },
+            status: readingStatus
+        };
 
-        await readingListService.create(dummyItem)
+        await readingListService.create(item);
         resetForm();
         navigate(`/`);
     }
