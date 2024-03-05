@@ -18,9 +18,9 @@ export default function ReadingList() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const result = await readingListService.get("");
+                const result = await readingListService.getAll();
                 if (result) {
-                    setItems([result]);
+                    setItems(result);
                 }
             } catch (error) {
                 console.error('Error fetching reading list items:', error);

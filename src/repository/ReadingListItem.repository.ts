@@ -10,15 +10,22 @@ import 'reflect-metadata';
 @injectable()
 export class ReadingListRepository implements IRepository<ReadingListItem> {
     async get(id: string): Promise<ReadingListItem | null> {
+
+        throw new Error("not implemented yet");
+    }
+
+    async getAll(): Promise<ReadingListItem[] | null> {
         const book: Book = {
             isbn: '123',
             title: 'The City and Its Uncertain Walls',
             author: 'Haruki Murakami',
         }
 
-        return {
-            book: book,
-            status: ReadingStatus.InProgress
-        };
+        return [
+            {
+                book: book,
+                status: ReadingStatus.InProgress
+            }
+        ];
     }
 }
