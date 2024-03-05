@@ -3,8 +3,5 @@ export interface IRepository<T> {
     getAll(): Promise<T[] | null>;
     create(entity: T): Promise<void>;
     delete(id: string): Promise<void>;
-    /*
-       update(entity: Partial<T>): Promise<void>;
-
-    */
+    update(entity: Partial<T>): Promise<void>;
   }

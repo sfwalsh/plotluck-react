@@ -12,7 +12,8 @@ export class ReadingListRepository implements IRepository<ReadingListItem> {
     readingListItemStorageKey = "ReadingListItems";
 
     async get(id: string): Promise<ReadingListItem | null> {
-        throw new Error("not implemented yet");
+        const allItems = await this.getAll() || [];
+        return allItems.filter(item => item.book.isbn === id)[0];
     }
 
     async getAll(): Promise<ReadingListItem[] | null> {
@@ -22,8 +23,7 @@ export class ReadingListRepository implements IRepository<ReadingListItem> {
     }
 
     async create(entity: ReadingListItem): Promise<void> {
-        const result = await this.getAll();
-        const currentItems: ReadingListItem[] = result ?? [];
+        const currentItems = await this.getAll() || [];
         const newItems = [
             ...currentItems, // spread
             entity
@@ -33,10 +33,28 @@ export class ReadingListRepository implements IRepository<ReadingListItem> {
     }
 
     async delete(id: string): Promise<void> {
-        const result = await this.getAll()
-        const newResults = (result ?? []).filter(item => item.book.isbn !== id)
+        const result = await this.getAll() || []
+        const newResults = result.filter(item => item.book.isbn !== id)
         this.updateItems(newResults);
         return Promise.resolve();
+    }
+
+    async update(entity: Partial<ReadingListItem>): Promise<void> {
+        try {
+            const items = await this.getAll() || [];
+            const itemIndex = items.findIndex(item => item.book.isbn === entity.book?.isbn)
+            if (itemIndex !== -1) {
+                items[itemIndex] = {
+                    ...items[itemIndex],
+                    ...entity
+                };
+            } else {
+                throw new Error("no matching item found");
+            }
+            return Promise.resolve();
+        } catch (error) {
+            return Promise.reject(error);
+        }
     }
 
     private updateItems(items: ReadingListItem[]) {
