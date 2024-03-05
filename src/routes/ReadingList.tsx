@@ -46,7 +46,7 @@ const ReadingList = () => {
     }
 
     const editItem = async (item: ReadingListItem) => {
-        await readingListService.update({ book: {...item.book, title: "Updated!"} })
+        await readingListService.update({ book: { ...item.book, title: "Updated!" } })
         refreshData();
     }
 
