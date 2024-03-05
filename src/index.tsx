@@ -8,12 +8,17 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import AddItemForm from "./routes/AddItemForm";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <ReadingList />,
     errorElement: <ErrorPage />
+  },
+  {
+    path: "add",
+    element: <AddItemForm />,
   },
 ]);
 

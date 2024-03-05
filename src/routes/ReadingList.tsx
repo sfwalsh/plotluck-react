@@ -33,14 +33,6 @@ export default function ReadingList() {
     // the empty dependency array in the useEffect hook tells React that the effect doesn't depend on any values or props
     // that might change during the component's lifetime
 
-    function addReadingListItem() {
-        const dummyItem: ReadingListItem = createDummyReadingListItem();
-
-        readingListService.create(
-            dummyItem
-        )
-    }
-
     return (
         <>
             <nav>
@@ -62,7 +54,6 @@ export default function ReadingList() {
                     })
                 }
             </ul>
-            <button onClick={() => addReadingListItem()}>Add Item</button>
         </>
     )
 }
