@@ -9,23 +9,27 @@ import 'reflect-metadata';
 
 @injectable()
 export class ReadingListRepository implements IRepository<ReadingListItem> {
-    async get(id: string): Promise<ReadingListItem | null> {
 
+    readingListItemStorageKey = "";
+
+    async get(id: string): Promise<ReadingListItem | null> {
         throw new Error("not implemented yet");
     }
 
     async getAll(): Promise<ReadingListItem[] | null> {
-        const book: Book = {
-            isbn: '123',
-            title: 'The City and Its Uncertain Walls',
-            author: 'Haruki Murakami',
-        }
+        const localValue = localStorage.getItem(this.readingListItemStorageKey)
+        if (localValue == null || localValue.length == 0) return [];
+        return JSON.parse(localValue)
+    }
 
-        return [
-            {
-                book: book,
-                status: ReadingStatus.InProgress
-            }
-        ];
+    async create(entity: ReadingListItem): Promise<void> {
+        const result = await this.getAll();
+        const currentItems: ReadingListItem[] = result ?? [];
+        const newItems = [
+            ...currentItems, // spread
+            entity
+          ]
+          
+        localStorage.setItem(this.readingListItemStorageKey, JSON.stringify(newItems))
     }
 }
