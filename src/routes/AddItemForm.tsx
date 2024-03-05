@@ -9,14 +9,13 @@ import { createDummyReadingListItem } from "../types/ReadingListItem.type"
 import { useNavigate } from "react-router-dom"
 import { ReadingStatus } from "../types/ReadingStatus.type"
 
-export default function AddItemForm() {
+const AddItemForm = () => {
     const navigate = useNavigate();
 
     const readingListService = container.get<IRepository<ReadingListItem>>(SERVICE_KEYS.READINGLIST_REPOSITORY);
     const [title, setTitle] = useState("")
     const [author, setAuthor] = useState("");
     const [readingStatus, setReadingStatus] = useState(ReadingStatus.Unread);
-
 
     const [formValid, setFormValid] = useState(true);
 
@@ -34,11 +33,6 @@ export default function AddItemForm() {
         return author.length >= 3;
     }, [author]);
 
-    function resetForm() {
-        setTitle("");
-        setAuthor("");
-    }
-
     // updates form's submit button
     useEffect(() => {
         const validTitle = isValidTitle();
@@ -46,6 +40,11 @@ export default function AddItemForm() {
 
         setFormValid((prevValid) => validTitle && validAuthor);
     }, [isValidTitle, isValidAuthor]);
+
+    function resetForm() {
+        setTitle("");
+        setAuthor("");
+    }
 
     async function handleSubmit(e: FormEvent) {
         e.preventDefault() // prevents refresh page
@@ -104,4 +103,6 @@ export default function AddItemForm() {
             </p>
         </form>
     )
-}
+};
+
+export default AddItemForm;
