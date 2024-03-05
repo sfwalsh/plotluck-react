@@ -7,34 +7,75 @@ import { FormEvent, useState } from "react"
 
 import { createDummyReadingListItem } from "../types/ReadingListItem.type"
 import { useNavigate } from "react-router-dom"
+import { ReadingStatus } from "../types/ReadingStatus.type"
 
 export default function AddItemForm() {
     const navigate = useNavigate();
 
     const readingListService = container.get<IRepository<ReadingListItem>>(SERVICE_KEYS.READINGLIST_REPOSITORY);
-    const [newItem, setNewItem] = useState("")
+    const [title, setTitle] = useState("")
+    const [author, setAuthor] = useState("");
+    const [readingStatus, setReadingStatus] = useState(ReadingStatus.Unread);
+
+    const readingStatusOptions: { [key: string]: string } = {
+        [ReadingStatus.Read]: 'Read', // [] rather than literal string maintains a connection between the enum and the options
+        [ReadingStatus.Unread]: 'Unread',
+        [ReadingStatus.InProgress]: 'In Progress',
+    };
+
+    function isValidAuthor(): Boolean {
+        return author.length >= 3
+    }
+
+    function isValidTitle(): Boolean {
+        return title.length >= 3
+    }
+
+    function resetForm() {
+        setTitle("");
+        setAuthor("");
+    }
 
     async function handleSubmit(e: FormEvent) {
         e.preventDefault() // prevents refresh page
-        if (newItem === "") return
+        if (!isValidTitle() || !isValidAuthor()) return
         const dummyItem: ReadingListItem = createDummyReadingListItem();
-        dummyItem.book.title = newItem
+        dummyItem.book.title = title
+        dummyItem.book.author = author
+        dummyItem.status = readingStatus
 
         await readingListService.create(dummyItem)
+        resetForm();
         navigate(`/`);
     }
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
-
-                <label htmlFor="item">New Item</label>
+                <label htmlFor="title">Title</label>
                 <input
-                    value={newItem}
-                    onChange={e => setNewItem(e.target.value)}
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
                     type="text"
-                    id="item"
+                    id="title"
                 />
+                <label htmlFor="author">Author</label>
+                <input
+                    value={author}
+                    onChange={e => setAuthor(e.target.value)}
+                    type="text"
+                    id="author"
+                />
+                <select
+                    value={readingStatus}
+                    onChange={(e) => setReadingStatus(e.target.value as ReadingStatus)}
+                >
+                    {
+                        Object.entries(readingStatusOptions).map(([value, label]) => (
+                            <option key={value} value={value}>{label}</option>
+                        ))
+                    }
+                </select>
             </div>
 
             <p>
