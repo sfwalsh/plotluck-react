@@ -4,10 +4,16 @@ import './index.css';
 import ReadingList from "./routes/ReadingList";
 import ErrorPage from "./error-page";
 
+// React Router
+
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
+// Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import AddItemView from "./routes/AddItemView";
 import EditItemView from "./routes/EditItemView";
 

@@ -1,3 +1,5 @@
+import React from "react"
+
 import { container } from "../DI/container"
 import { IRepository } from "../repository/IRepository.interface"
 import { ReadingListItem } from "../types/ReadingListItem.type"

@@ -1,6 +1,8 @@
 import { ReadingListItem } from "../types/ReadingListItem.type"
 import { ReadingStatus } from "../types/ReadingStatus.type"
 
+import React from "react";
+
 type ReadingListItemViewProps = {
   onDelete: (id: string) => void;
   onEdit: (item: ReadingListItem) => void;
