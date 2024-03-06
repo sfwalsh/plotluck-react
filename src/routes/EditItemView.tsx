@@ -1,13 +1,13 @@
 import React from "react";
 
-import { container } from "../DI/container"
-import { IRepository } from "../repository/IRepository.interface"
-import { ReadingListItem } from "../types/ReadingListItem.type"
-import { SERVICE_KEYS } from "../DI/service-keys.const"
+import { container } from "../DI/container";
+import { IRepository } from "../repository/IRepository.interface";
+import { ReadingListItem } from "../types/ReadingListItem.type";
+import { SERVICE_KEYS } from "../DI/service-keys.const";
 
-import { useLocation, useNavigate } from "react-router-dom"
-import { ReadingStatus } from "../types/ReadingStatus.type"
-import ReadingListItemForm from "../components/ReadingListItemForm"
+import { useLocation, useNavigate } from "react-router-dom";
+import { ReadingStatus } from "../types/ReadingStatus.type";
+import ReadingListItemForm from "../components/ReadingListItemForm";
 
 const EditItemView = () => {
     const location = useLocation();

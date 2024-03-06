@@ -1,7 +1,7 @@
+import React from "react";
+
 import { ReadingListItem } from "../types/ReadingListItem.type"
 import { ReadingStatus } from "../types/ReadingStatus.type"
-
-import React from "react";
 
 type ReadingListItemViewProps = {
   onDelete: (id: string) => void;
@@ -30,8 +30,8 @@ const ReadingListItemView = ({ item, onDelete, onEdit }: ReadingListItemViewProp
       <h2>{item.book.author}</h2>
       <h3>{getTitle(item.status)}</h3>
 
-      <button onClick={() => onDelete(item.book.isbn)}>Delete</button>
-      <button onClick={() => onEdit(item)}>Edit</button>
+      <button className="btn btn-light" onClick={() => onDelete(item.book.isbn)}>Delete</button>
+      <button className="btn btn-link" onClick={() => onEdit(item)}>Edit</button>
     </>
   )
 };

@@ -57,13 +57,12 @@ const ReadingList = () => {
 
     return (
         <>
-            <nav>
-                <ul>
-                    <li>
-                        <Link to={`/add`}>Add Item</Link>
-                    </li>
-                </ul>
-            </nav>
+            <div className="my-2 mx-3">
+                <div className="d-flex flex-row justify-content-between align-items-center">
+                    <h1>Plot Luck</h1>
+                    <Link className="btn btn-primary" to={`/add`}>Add Item</Link>
+                </div>
+            </div>
 
             <ul className="list">
                 {items.length === 0 && <ReadingListEmptyState />}

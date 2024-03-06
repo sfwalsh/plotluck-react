@@ -1,4 +1,5 @@
 import React from "react";
+import "../index.css";
 
 import { useCallback, useState, useEffect, FormEvent } from "react";
 import { ReadingStatus } from "../types/ReadingStatus.type";
@@ -48,46 +49,58 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="title">Title</label>
+        <form className="p-2" onSubmit={handleSubmit}>
+
+            <div className="form-group form-item">
+                <label className="form-item-label" htmlFor="title">Title</label>
                 <input
+                    className="form-control"
+                    placeholder="Book Title"
                     value={title}
                     onChange={e => setTitle(e.target.value)}
                     type="text"
                     id="title"
                 />
-                <label htmlFor="author">Author</label>
+            </div>
+
+            <div className="form-group form-item">
+                <label className="form-item-label" htmlFor="author">Author</label>
                 <input
+                    className="form-control"
+                    placeholder="Author"
                     value={author}
                     onChange={e => setAuthor(e.target.value)}
                     type="text"
                     id="author"
                 />
-                <select
-                    value={readingStatus}
-                    onChange={(e) => setReadingStatus(e.target.value as ReadingStatus)}
-                >
-                    {
-                        Object.entries(readingStatusOptions).map(([value, label]) => (
-                            <option key={value} value={value}>{label}</option>
-                        ))
-                    }
-                </select>
             </div>
 
-            <p>
-                <button type="submit" disabled={!formValid}>
-                    { props.submitButtonText }
+
+            {/* dropdown */}
+            <select
+                className="form-control form-item"
+                value={readingStatus}
+                onChange={(e) => setReadingStatus(e.target.value as ReadingStatus)}
+            >
+                {
+                    Object.entries(readingStatusOptions).map(([value, label]) => (
+                        <option key={value} value={value}>{label}</option>
+                    ))
+                }
+            </select>
+
+            <div className="d-flex flex-row form-item-submit align-items-center justify-content-end">
+                <button className="btn btn-primary" type="submit" disabled={!formValid}>
+                    {props.submitButtonText}
                 </button>
                 <button
+                    className="btn btn-link"
                     type="button"
                     onClick={() => { props.onCancel() }}
                 >
                     Cancel
                 </button>
-            </p>
-            
+            </div>
         </form>
     )
 };
