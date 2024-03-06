@@ -44,22 +44,19 @@ const ReadingList = () => {
         refreshData();
     }, [refreshData]);
 
-    async function deleteItem(id: string) {
+    const deleteItem = async (id: string) => {
         await readingListService.delete(id);
         refreshData();
-    }
+    };
 
     const editItem = async (item: ReadingListItem) => {
         navigate(`/edit/${item.book.isbn}`, { state: { itemToEdit: item } });
-    }
+    };
 
     return (
         <>
             <nav>
                 <ul>
-                    <li>
-                        <Link to={`/whoops/1`}>Error Page Test</Link>
-                    </li>
                     <li>
                         <Link to={`/add`}>Add Item</Link>
                     </li>
