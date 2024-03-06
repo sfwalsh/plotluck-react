@@ -13,7 +13,11 @@ import { useCallback } from "react";
 
 import { Link } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+
 const ReadingList = () => {
+
+    const navigate = useNavigate();
 
     const readingListService = container.get<IRepository<ReadingListItem>>(SERVICE_KEYS.READINGLIST_REPOSITORY);
     const [items, setItems] = useState<ReadingListItem[]>([]);
@@ -46,8 +50,7 @@ const ReadingList = () => {
     }
 
     const editItem = async (item: ReadingListItem) => {
-        await readingListService.update({ book: { ...item.book, title: "Updated!" } })
-        refreshData();
+        navigate(`/edit/${item.book.isbn}`, { state: { itemToEdit: item } });
     }
 
     return (

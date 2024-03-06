@@ -8,7 +8,8 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import AddItemForm from "./routes/AddItemForm";
+import AddItemView from "./routes/AddItemView";
+import EditItemView from "./routes/EditItemView";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const router = createBrowserRouter([
   },
   {
     path: "add",
-    element: <AddItemForm />,
+    element: <AddItemView />,
+  },
+  {
+    path: "edit/:id",
+    element: <EditItemView />,
   },
 ]);
 

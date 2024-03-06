@@ -18,7 +18,7 @@ const ReadingListItemView = ({ item, onDelete, onEdit }: ReadingListItemViewProp
           case ReadingStatus.InProgress:
             return 'In Progress';
           default:
-            throw new Error('Unknown status');
+            return 'Unread';
         }
       }
 
