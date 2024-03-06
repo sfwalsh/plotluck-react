@@ -64,7 +64,7 @@ const ReadingList = () => {
                 </div>
             </div>
 
-            <ul className="list">
+            <div className="mx-3 mt-3">
                 {items.length === 0 && <ReadingListEmptyState />}
                 {
                     items.map(item => {
@@ -76,7 +76,7 @@ const ReadingList = () => {
                         />
                     })
                 }
-            </ul>
+            </div>
         </>
     )
 };
