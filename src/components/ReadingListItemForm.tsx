@@ -3,6 +3,8 @@ import React from "react";
 import { useCallback, useState, useEffect, FormEvent } from "react";
 import { ReadingStatus } from "../types/ReadingStatus.type";
 
+import { Listbox } from '@headlessui/react'
+
 type ReadingListItemFormProps = {
     title: string,
     author: string,
@@ -81,22 +83,33 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
                         />
                     </div>
 
-
                     {/* dropdown */}
+
                     <div className="form-group form-item">
-                        <label className="form-item-label" htmlFor="title">Title</label>
-                        <select
-                            id="reading_status"
-                            className="custom-input form-control"
+                        <label className="form-item-label" htmlFor="reading_status">Reading Status</label>
+                        
+                        <div className="reading_status">
+                        <Listbox
                             value={readingStatus}
-                            onChange={(e) => setReadingStatus(e.target.value as ReadingStatus)}
+                            onChange={(e) => setReadingStatus(e)}
                         >
-                            {
-                                Object.entries(readingStatusOptions).map(([value, label]) => (
-                                    <option key={value} value={value}>{label}</option>
-                                ))
-                            }
-                        </select>
+                            <Listbox.Button>{readingStatus}</Listbox.Button>
+                            <Listbox.Options>
+                                {
+                                    Object.entries(readingStatusOptions).map(([value, label]) => (
+                                        <Listbox.Option
+                                            key={value}
+                                            value={value}
+                                        >
+                                            {label}
+                                        </Listbox.Option>
+                                    ))
+                                }
+                            </Listbox.Options>
+                        </Listbox>
+
+                        </div>
+                        
                     </div>
 
                     <hr className="custom-hr" />

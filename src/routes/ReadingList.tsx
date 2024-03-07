@@ -59,6 +59,7 @@ const ReadingList = () => {
     return (
         <>
             <Navbar children={<Link className="custom-button action-button" to={`/add`}>Add Item</Link>} />
+
             <div className="mx-3 mt-3">
                 {items.length === 0 && <ReadingListEmptyState />}
                 {
