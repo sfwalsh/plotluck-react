@@ -1,0 +1,10 @@
+:root {
+    --primary-accent-color:rgb(78, 70, 220);
+
+    --primary-accent-tint-1-color:rgb(201, 198, 255);
+    --primary-accent-tint-2-color:rgb(239, 242, 254);
+
+    --primary-accent-shade-1-color:rgb(3, 0, 89);
+
+    --light-gray-border-color:rgb(222, 222, 248);
+}

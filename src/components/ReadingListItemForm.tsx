@@ -5,6 +5,11 @@ import { ReadingStatus } from "../types/ReadingStatus.type";
 
 import { Listbox } from '@headlessui/react'
 
+import errorImage from '../images/whoops/error.png';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleChevronDown } from '@fortawesome/free-solid-svg-icons'
+
 type ReadingListItemFormProps = {
     title: string,
     author: string,
@@ -87,29 +92,34 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
 
                     <div className="form-group form-item">
                         <label className="form-item-label" htmlFor="reading_status">Reading Status</label>
-                        
-                        <div className="reading_status">
-                        <Listbox
-                            value={readingStatus}
-                            onChange={(e) => setReadingStatus(e)}
-                        >
-                            <Listbox.Button>{readingStatus}</Listbox.Button>
-                            <Listbox.Options>
-                                {
-                                    Object.entries(readingStatusOptions).map(([value, label]) => (
-                                        <Listbox.Option
-                                            key={value}
-                                            value={value}
-                                        >
-                                            {label}
-                                        </Listbox.Option>
-                                    ))
-                                }
-                            </Listbox.Options>
-                        </Listbox>
+
+                        <div id="reading_status">
+                            <Listbox
+                                value={readingStatus}
+                                onChange={(e) => setReadingStatus(e)}
+                            >
+                                <Listbox.Button className="listbox-button d-flex justify-content-between align-items-center">
+                                    {readingStatusOptions[readingStatus]}
+                                    <FontAwesomeIcon icon={faCircleChevronDown} className="listbox-icon" />
+                                </Listbox.Button>
+
+                                <Listbox.Options className="listbox-option-group mt-2">
+                                    {
+                                        Object.entries(readingStatusOptions).map(([value, label]) => (
+                                            <Listbox.Option
+                                                className="listbox-option-item my-4"
+                                                key={value}
+                                                value={value}
+                                            >
+                                                {label}
+                                            </Listbox.Option>
+                                        ))
+                                    }
+                                </Listbox.Options>
+                            </Listbox>
 
                         </div>
-                        
+
                     </div>
 
                     <hr className="custom-hr" />

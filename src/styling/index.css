@@ -1,5 +1,7 @@
 @import "fonts.css";
 @import "buttons.css";
+@import "listbox.css";
+@import "colors.css";
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -79,8 +81,6 @@ label {
   /* Makes the element only as wide as its content */
   margin: 0;
 
-  background-color: #f8f9fa;
-
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 
@@ -88,9 +88,8 @@ label {
   padding-right: 0.5rem;
 
   border-radius: 6px;
+  border: 1px solid rgb(222, 222, 248);
 
   color: rgb(65, 56, 194);
-
-  border: 1px solid rgb(222, 222, 248);
-  background-color: rgb(239red, 242, 254);
+  background-color: rgb(239, 242, 254);
 }

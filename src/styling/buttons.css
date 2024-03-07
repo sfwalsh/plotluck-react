@@ -20,7 +20,7 @@
 
 .action-button {
     border: 0cap;
-    background-color: rgb(78, 70, 220);
+    background-color: var(--primary-accent-color);
     color: white;
     border-radius: 6px;
     text-decoration: none;
