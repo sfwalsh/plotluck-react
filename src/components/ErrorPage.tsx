@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useRouteError } from "react-router-dom";
-import errorImage from './images/whoops/error.png';
+import errorImage from '../images/whoops/error.png';
 
 import { Link } from "react-router-dom";
 
@@ -15,7 +15,7 @@ const ErrorPage = () => {
 
         {/* Vertical Alignment in Window from center-framed-content */}
 
-        <div className="center-framed-content">
+        <div className="center-framed-content mx-3">
           <img className="top-img" src={errorImage} />
 
           <div>

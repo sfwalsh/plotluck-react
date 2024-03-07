@@ -4,7 +4,7 @@ import * as ReactDOM from "react-dom/client";
 import './styling/index.css';
 
 import ReadingList from "./routes/ReadingList";
-import ErrorPage from "./error-page";
+import ErrorPage from "./components/ErrorPage";
 
 // React Router
 

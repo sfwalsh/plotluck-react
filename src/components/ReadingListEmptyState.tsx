@@ -10,7 +10,7 @@ const ReadingListEmptyState = () => {
 
                 {/* Vertical Alignment in Window from center-framed-content */}
 
-                <div className="center-framed-content">
+                <div className="center-framed-content mx-3">
                     <img className="top-img" src={emptyHeroImage} />
                     <div>
                         <h4 className="poppins-bold mt-4">You have no items in your collection</h4>
