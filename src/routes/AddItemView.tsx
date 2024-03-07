@@ -34,14 +34,16 @@ const AddItemView = () => {
     };
 
     return (
-        <ReadingListItemForm 
-        title="" 
-        author=""
-        readingStatus={ReadingStatus.Unread}
-        onSubmit={ onSubmitHandler }
-        onCancel={() => handleCancel()}
-        submitButtonText="Add"
-        />
+        <>
+            <ReadingListItemForm
+                title=""
+                author=""
+                readingStatus={ReadingStatus.Unread}
+                onSubmit={onSubmitHandler}
+                onCancel={() => handleCancel()}
+                submitButtonText="Add"
+            />
+        </>
     )
 };
 

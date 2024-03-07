@@ -59,7 +59,7 @@ const ReadingList = () => {
         <>
             <div className="my-2 mx-3">
                 <div className="d-flex flex-row justify-content-between align-items-center">
-                    <h1>Plot Luck</h1>
+                    <h1 className="abril-fatface-regular">Plot Luck</h1>
                     <Link className="btn btn-primary" to={`/add`}>Add Item</Link>
                 </div>
             </div>

@@ -54,7 +54,7 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
             <div className="form-group form-item">
                 <label className="form-item-label" htmlFor="title">Title</label>
                 <input
-                    className="form-control"
+                    className="custom-input form-control"
                     placeholder="Book Title"
                     value={title}
                     onChange={e => setTitle(e.target.value)}
@@ -66,7 +66,7 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
             <div className="form-group form-item">
                 <label className="form-item-label" htmlFor="author">Author</label>
                 <input
-                    className="form-control"
+                    className="custom-input form-control"
                     placeholder="Author"
                     value={author}
                     onChange={e => setAuthor(e.target.value)}
@@ -78,7 +78,7 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
 
             {/* dropdown */}
             <select
-                className="form-control form-item"
+                className="custom-input form-control form-item"
                 value={readingStatus}
                 onChange={(e) => setReadingStatus(e.target.value as ReadingStatus)}
             >
