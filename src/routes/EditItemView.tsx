@@ -38,6 +38,7 @@ const EditItemView = () => {
                 onSubmit={onSubmitHandler}
                 onCancel={() => handleCancel()}
                 submitButtonText="Update"
+                formTitleText="Edit Item"
             />
         </div>
     )

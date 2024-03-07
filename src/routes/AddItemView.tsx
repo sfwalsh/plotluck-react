@@ -38,16 +38,15 @@ const AddItemView = () => {
     return (
         <>
             <Navbar children={null} />
-            <div className="mx-3 mt-3">
-                <ReadingListItemForm
-                    title=""
-                    author=""
-                    readingStatus={ReadingStatus.Unread}
-                    onSubmit={onSubmitHandler}
-                    onCancel={() => handleCancel()}
-                    submitButtonText="Add"
-                />
-            </div>
+            <ReadingListItemForm
+                title=""
+                author=""
+                readingStatus={ReadingStatus.Unread}
+                onSubmit={onSubmitHandler}
+                onCancel={() => handleCancel()}
+                submitButtonText="Add"
+                formTitleText="Add Item"
+            />
         </>
     )
 };

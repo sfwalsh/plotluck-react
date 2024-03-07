@@ -9,6 +9,7 @@ type ReadingListItemFormProps = {
     readingStatus: ReadingStatus,
     onSubmit: (title: string, author: string, readingStatus: ReadingStatus) => void;
     onCancel: () => void;
+    formTitleText: string;
     submitButtonText: string;
 }
 
@@ -48,59 +49,75 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
     };
 
     return (
-        <form className="p-2" onSubmit={handleSubmit}>
 
-            <div className="form-group form-item">
-                <label className="form-item-label" htmlFor="title">Title</label>
-                <input
-                    className="custom-input form-control"
-                    placeholder="Book Title"
-                    value={title}
-                    onChange={e => setTitle(e.target.value)}
-                    type="text"
-                    id="title"
-                />
+        // <div className="mx-3 mt-3"></div>
+        <div className="d-flex justify-content-center my-4 mx-3 mt-3">
+            <div className="col-12 col-lg-8">
+                <form className="mx-2 mx-md-5" onSubmit={handleSubmit}>
+                    <div className="form-group form-item">
+                        <h4 className="poppins-bold">{props.formTitleText}</h4>
+                    </div>
+                    <div className="form-group form-item">
+                        <label className="form-item-label" htmlFor="title">Title</label>
+                        <input
+                            className="custom-input form-control"
+                            placeholder="Book Title"
+                            value={title}
+                            onChange={e => setTitle(e.target.value)}
+                            type="text"
+                            id="title"
+                        />
+                    </div>
+
+                    <div className="form-group form-item">
+                        <label className="form-item-label" htmlFor="author">Author</label>
+                        <input
+                            className="custom-input form-control"
+                            placeholder="Author"
+                            value={author}
+                            onChange={e => setAuthor(e.target.value)}
+                            type="text"
+                            id="author"
+                        />
+                    </div>
+
+
+                    {/* dropdown */}
+                    <div className="form-group form-item">
+                        <label className="form-item-label" htmlFor="title">Title</label>
+                        <select
+                            id="reading_status"
+                            className="custom-input form-control"
+                            value={readingStatus}
+                            onChange={(e) => setReadingStatus(e.target.value as ReadingStatus)}
+                        >
+                            {
+                                Object.entries(readingStatusOptions).map(([value, label]) => (
+                                    <option key={value} value={value}>{label}</option>
+                                ))
+                            }
+                        </select>
+                    </div>
+
+                    <hr className="custom-hr" />
+                    <div className="d-flex flex-row form-item-submit align-items-center justify-content-end">
+
+                        <button
+                            className="custom-button link-button"
+                            type="button"
+                            onClick={() => { props.onCancel() }}
+                        >
+                            Cancel
+                        </button>
+
+                        <button className="custom-button action-button" type="submit" disabled={!formValid}>
+                            {props.submitButtonText}
+                        </button>
+                    </div>
+                </form>
             </div>
+        </div>
 
-            <div className="form-group form-item">
-                <label className="form-item-label" htmlFor="author">Author</label>
-                <input
-                    className="custom-input form-control"
-                    placeholder="Author"
-                    value={author}
-                    onChange={e => setAuthor(e.target.value)}
-                    type="text"
-                    id="author"
-                />
-            </div>
-
-
-            {/* dropdown */}
-            <select
-                className="custom-input form-control form-item"
-                value={readingStatus}
-                onChange={(e) => setReadingStatus(e.target.value as ReadingStatus)}
-            >
-                {
-                    Object.entries(readingStatusOptions).map(([value, label]) => (
-                        <option key={value} value={value}>{label}</option>
-                    ))
-                }
-            </select>
-
-            <div className="d-flex flex-row form-item-submit align-items-center justify-content-end">
-                <button className="btn btn-primary" type="submit" disabled={!formValid}>
-                    {props.submitButtonText}
-                </button>
-                <button
-                    className="btn btn-link"
-                    type="button"
-                    onClick={() => { props.onCancel() }}
-                >
-                    Cancel
-                </button>
-            </div>
-        </form>
     )
 };
 

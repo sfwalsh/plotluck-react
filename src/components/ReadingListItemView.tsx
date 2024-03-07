@@ -32,16 +32,16 @@ const ReadingListItemView = ({ item, onDelete, onEdit }: ReadingListItemViewProp
 
         <div className="card-body">
 
-          <h4 className="my-1 card-title">{item.book.title}</h4>
+          <h4 className="my-1 card-title poppins-medium">{item.book.title}</h4>
           <p className="mt-1 mb-0 card-text">{item.book.author}</p>
 
           {/* container for status tag */}
           <div className="mt-2 mb-4">
-            <p className="badge bg-secondary-subtle border border-secondary-subtle text-secondary-emphasis rounded-pill">{getTitle(item.status)}</p>
+            <p className="tag">{getTitle(item.status)}</p>
           </div>
           
-          <button className="btn me-2 btn-light" onClick={() => onEdit(item)}>Edit</button>
-          <button className="btn btn-danger" onClick={() => onDelete(item.book.isbn)}>Delete</button>
+          <button className="custom-button secondary-action-button me-2" onClick={() => onEdit(item)}>Edit</button>
+          <button className="custom-button secondary-action-button" onClick={() => onDelete(item.book.isbn)}>Delete</button>
 
         </div>
       </div>

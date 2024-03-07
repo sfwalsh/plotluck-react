@@ -1,19 +1,30 @@
 @import "fonts.css";
+@import "buttons.css";
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: "Abril Fatface", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-p, label {
+p {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  font-style: normal;
+}
+
+label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
   font-style: normal;
 }
 
@@ -31,8 +42,7 @@ p, label {
 }
 
 .form-item {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 3rem;
 }
 
 .form-item-label {
@@ -43,10 +53,44 @@ p, label {
   margin-top: 1rem;
 }
 
+.custom-hr {
+  color: #989898;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
 .center-framed-content {
   margin: 0;
   position: absolute;
   top: 50%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+.tag {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  font-style: normal;
+
+  display: inline-block;
+  /* or use display: inline-flex; */
+  width: shrink-wrap;
+  /* Makes the element only as wide as its content */
+  margin: 0;
+
+  background-color: #f8f9fa;
+
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  border-radius: 6px;
+
+  color: rgb(65, 56, 194);
+
+  border: 1px solid rgb(222, 222, 248);
+  background-color: rgb(239red, 242, 254);
 }
