@@ -5,13 +5,12 @@ import { Link } from "react-router-dom";
 
 const ReadingListEmptyState = () => {
     return (
-
         <div className="container">
             <div className="d-flex flex-column align-items-center justify-content-center text-center">
 
-                {/* Vertical Alignment in Window from blank-state-body */}
+                {/* Vertical Alignment in Window from center-framed-content */}
 
-                <div className="blank-state-body">
+                <div className="center-framed-content">
                     <img className="top-img" src={emptyHeroImage} />
                     <div>
                         <h4 className="poppins-bold mt-4">You have no items in your collection</h4>
