@@ -1,0 +1,15 @@
+.top-img {
+    max-width: 100%;
+    width: 26%;
+    /* Image width will be 100% of the container's width */
+    height: auto;
+    /* Height will adjust automatically to maintain the aspect ratio */
+}
+
+.blank-state-body {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}

@@ -58,7 +58,7 @@ const ReadingList = () => {
     return (
         <>
 
-            <nav className="navbar sticky-top navbar-light bg-light">
+            <nav className="navbar navbar-light bg-light">
                 <div className="d-flex flex-row align-items-center mx-4 my-1">
                     <a className="navbar-brand" id="app-title" href="#">Plot Luck</a>
                     <Link className="btn btn-primary" to={`/add`}>Add Item</Link>

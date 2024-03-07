@@ -1,5 +1,4 @@
 import React from "react";
-import "../index.css";
 
 import { useCallback, useState, useEffect, FormEvent } from "react";
 import { ReadingStatus } from "../types/ReadingStatus.type";
