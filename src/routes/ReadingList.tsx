@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import ReadingListEmptyState from "../components/ReadingListEmptyState";
 import ReadingListItemView from "../components/ReadingListItemView";
+import Navbar from "../components/Navbar";
 
 import { ReadingListItem } from "../types/ReadingListItem.type";
 
@@ -57,14 +58,7 @@ const ReadingList = () => {
 
     return (
         <>
-
-            <nav className="navbar navbar-light bg-light">
-                <div className="d-flex flex-row align-items-center mx-4 my-1">
-                    <a className="navbar-brand" id="app-title" href="#">Plot Luck</a>
-                    <Link className="btn btn-primary" to={`/add`}>Add Item</Link>
-                </div>
-            </nav>
-
+            <Navbar children={<Link className="btn btn-primary" to={`/add`}>Add Item</Link>} />
             <div className="mx-3 mt-3">
                 {items.length === 0 && <ReadingListEmptyState />}
                 {

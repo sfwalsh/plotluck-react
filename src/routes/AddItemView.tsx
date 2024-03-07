@@ -7,7 +7,9 @@ import { SERVICE_KEYS } from "../DI/service-keys.const";
 
 import { useNavigate } from "react-router-dom";
 import { ReadingStatus } from "../types/ReadingStatus.type";
+
 import ReadingListItemForm from "../components/ReadingListItemForm";
+import Navbar from "../components/Navbar";
 
 const AddItemView = () => {
     const navigate = useNavigate();
@@ -35,14 +37,17 @@ const AddItemView = () => {
 
     return (
         <>
-            <ReadingListItemForm
-                title=""
-                author=""
-                readingStatus={ReadingStatus.Unread}
-                onSubmit={onSubmitHandler}
-                onCancel={() => handleCancel()}
-                submitButtonText="Add"
-            />
+            <Navbar children={null} />
+            <div className="mx-3 mt-3">
+                <ReadingListItemForm
+                    title=""
+                    author=""
+                    readingStatus={ReadingStatus.Unread}
+                    onSubmit={onSubmitHandler}
+                    onCancel={() => handleCancel()}
+                    submitButtonText="Add"
+                />
+            </div>
         </>
     )
 };

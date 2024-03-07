@@ -7,11 +7,13 @@ import { SERVICE_KEYS } from "../DI/service-keys.const";
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { ReadingStatus } from "../types/ReadingStatus.type";
+
 import ReadingListItemForm from "../components/ReadingListItemForm";
+import Navbar from "../components/Navbar";
 
 const EditItemView = () => {
     const location = useLocation();
-    const { itemToEdit } = location.state as { itemToEdit: ReadingListItem};
+    const { itemToEdit } = location.state as { itemToEdit: ReadingListItem };
 
     const navigate = useNavigate();
     const readingListService = container.get<IRepository<ReadingListItem>>(SERVICE_KEYS.READINGLIST_REPOSITORY);
@@ -27,14 +29,17 @@ const EditItemView = () => {
     };
 
     return (
-        <ReadingListItemForm
-            title={itemToEdit.book.title}
-            author={itemToEdit.book.author}
-            readingStatus={itemToEdit.status}
-            onSubmit={onSubmitHandler}
-            onCancel={() => handleCancel()}
-            submitButtonText="Update"
-        />
+        <div>
+            <Navbar children={null} />
+            <ReadingListItemForm
+                title={itemToEdit.book.title}
+                author={itemToEdit.book.author}
+                readingStatus={itemToEdit.status}
+                onSubmit={onSubmitHandler}
+                onCancel={() => handleCancel()}
+                submitButtonText="Update"
+            />
+        </div>
     )
 };
 
