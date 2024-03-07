@@ -57,12 +57,13 @@ const ReadingList = () => {
 
     return (
         <>
-            <div className="my-2 mx-3">
-                <div className="d-flex flex-row justify-content-between align-items-center">
-                    <h1 className="abril-fatface-regular">Plot Luck</h1>
+
+            <nav className="navbar sticky-top navbar-light bg-light">
+                <div className="d-flex flex-row align-items-center mx-4 my-1">
+                    <a className="navbar-brand" id="app-title" href="#">Plot Luck</a>
                     <Link className="btn btn-primary" to={`/add`}>Add Item</Link>
                 </div>
-            </div>
+            </nav>
 
             <div className="mx-3 mt-3">
                 {items.length === 0 && <ReadingListEmptyState />}
