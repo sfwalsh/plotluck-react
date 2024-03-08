@@ -2,6 +2,7 @@ import React from "react";
 
 import { ReadingListItem } from "../types/ReadingListItem.type"
 import { ReadingStatus } from "../types/ReadingStatus.type"
+import ReadingStatusMapper from "../mappers/ReadingStatusMapper";
 
 type ReadingListItemViewProps = {
   onDelete: (id: string) => void;
@@ -11,23 +12,10 @@ type ReadingListItemViewProps = {
 
 const ReadingListItemView = ({ item, onDelete, onEdit }: ReadingListItemViewProps) => {
 
-  const getTitle = (status: ReadingStatus): string => {
-    switch (status) {
-      case ReadingStatus.Read:
-        return 'Read';
-      case ReadingStatus.Unread:
-        return 'Unread';
-      case ReadingStatus.InProgress:
-        return 'In Progress';
-      default:
-        return 'Unread';
-    }
-  }
+  const readingStatusMapper = new ReadingStatusMapper();
 
   return (
-
     <>
-
       <div className="card mt-2">
 
         <div className="card-body">
@@ -37,7 +25,7 @@ const ReadingListItemView = ({ item, onDelete, onEdit }: ReadingListItemViewProp
 
           {/* container for status tag */}
           <div className="mt-2 mb-4">
-            <p className="tag">{getTitle(item.status)}</p>
+            <p className="tag">{readingStatusMapper.mapReadingStatusToString(item.status)}</p>
           </div>
 
           <div>

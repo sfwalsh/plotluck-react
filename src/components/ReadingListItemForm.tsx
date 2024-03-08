@@ -4,6 +4,8 @@ import { useCallback, useState, useEffect, FormEvent } from "react";
 import { ReadingStatus } from "../types/ReadingStatus.type";
 import CustomListbox from "./CustomListbox";
 
+import ReadingStatusMapper from "../mappers/ReadingStatusMapper";
+
 type ReadingListItemFormProps = {
     title: string,
     author: string,
@@ -16,6 +18,7 @@ type ReadingListItemFormProps = {
 
 const ReadingListItemForm = (props: ReadingListItemFormProps) => {
 
+    const readingStatusMapper = new ReadingStatusMapper();
     const [title, setTitle] = useState(props.title)
     const [author, setAuthor] = useState(props.author);
     const [readingStatus, setReadingStatus] = useState(props.readingStatus);
@@ -42,34 +45,6 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
         if (!isValidTitle() || !isValidAuthor()) return;
         props.onSubmit(title, author, readingStatus);
     };
-
-    const readingStatusOptions: string[] = ['Read', 'Unread', 'In Progress']
-    
-    const mapStringToReadingStatus = (string: string): ReadingStatus => {
-        switch (string) {
-            case 'Read':
-                return ReadingStatus.Read;
-            case 'Unread':
-                return ReadingStatus.Unread
-            case 'In Progress':
-                return ReadingStatus.InProgress;
-            default:
-                return ReadingStatus.Read;
-        }
-    };
-
-    const mapReadingStatusToString = (readingStatus: ReadingStatus): string => {
-        switch (readingStatus) {
-            case ReadingStatus.Read:
-                return 'Read';
-            case ReadingStatus.Unread:
-                return 'Unread';
-            case ReadingStatus.InProgress:
-                return 'In Progress';
-            default:
-                return 'Read';
-        }
-    }
 
     return (
 
@@ -110,12 +85,12 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
 
                         <div id="reading_status">
                             <CustomListbox
-                                selectedValue={mapReadingStatusToString(readingStatus)}
+                                selectedValue={readingStatusMapper.mapReadingStatusToString(readingStatus)}
                                 setSelectedValue={(e) => {
-                                    const mapped = mapStringToReadingStatus(e);
+                                    const mapped = readingStatusMapper.mapStringToReadingStatus(e);
                                     setReadingStatus(mapped);
                                 }}
-                                options={readingStatusOptions}
+                                options={readingStatusMapper.getAllReadingStatusOptions()}
                             />
                         </div>
                     </div>
