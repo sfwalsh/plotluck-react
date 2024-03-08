@@ -39,9 +39,11 @@ const ReadingListItemView = ({ item, onDelete, onEdit }: ReadingListItemViewProp
           <div className="mt-2 mb-4">
             <p className="tag">{getTitle(item.status)}</p>
           </div>
-          
-          <button className="custom-button secondary-action-button me-2" onClick={() => onEdit(item)}>Edit</button>
-          <button className="custom-button secondary-action-button" onClick={() => onDelete(item.book.isbn)}>Delete</button>
+
+          <div>
+            <button className="custom-button secondary-action-button me-2" onClick={() => onEdit(item)}>Edit</button>
+            <button className="custom-button secondary-action-button" onClick={() => onDelete(item.book.isbn)}>Delete</button>
+          </div>
 
         </div>
       </div>

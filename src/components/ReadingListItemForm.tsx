@@ -57,7 +57,6 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
 
     return (
 
-        // <div className="mx-3 mt-3"></div>
         <div className="d-flex justify-content-center my-4 mx-3 mt-3">
             <div className="col-12 col-lg-8">
                 <form className="mx-2 mx-md-5" onSubmit={handleSubmit}>
@@ -136,7 +135,7 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
                     <div className="d-flex flex-row form-item-submit align-items-center justify-content-end">
 
                         <button
-                            className="custom-button link-button"
+                            className="custom-button link-button me-2"
                             type="button"
                             onClick={() => { props.onCancel() }}
                         >

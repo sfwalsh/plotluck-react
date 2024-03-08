@@ -4,7 +4,6 @@
     font-size: 0.8rem;
     font-style: normal;
 
-    margin: 0.25rem;
     padding-left: 0.8rem;
     padding-right: 0.8rem;
     padding-top: 0.5rem;
@@ -41,13 +40,13 @@
 
 .secondary-action-button {
     border: 0cap;
-    background-color: rgb(226, 226, 226);
-    color: rgb(48, 48, 48);
+    background-color: var(--gray-color);
+    color: var(--gray-shade-1);
     border-radius: 6px;
     text-decoration: none;
 }
 
 .secondary-action-button:hover {
-    background-color: rgb(192, 192, 192);
-    color: rgb(48, 48, 48);
+    color: var(--gray-shade-1);
+    background-color: var(--gray-shade-2);
 }

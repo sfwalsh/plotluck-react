@@ -1,11 +1,16 @@
 :root {
     --primary-accent-color:rgb(78, 70, 220);
 
-    --primary-accent-tint-1-color:rgb(201, 198, 255);
-    --primary-accent-tint-2-color:rgb(239, 242, 254);
+    --primary-accent-tint-1:rgb(201, 198, 255);
+    --primary-accent-tint-2:rgb(239, 242, 254);
 
-    --primary-accent-shade-1-color:rgb(3, 0, 89);
-    --primary-accent-shade-2-color: rgb(65, 56, 194);
+    --primary-accent-shade-1:rgb(3, 0, 89);
+    --primary-accent-shade-2: rgb(65, 56, 194);
 
-    --light-gray-border-color:rgb(222, 222, 248);
+    --light-gray-border:rgb(222, 222, 248);
+
+    --gray-color: rgb(237, 237, 237);
+    
+    --gray-shade-1: rgb(48, 48, 48);
+    --gray-shade-2: rgb(214, 214, 214);
 }
