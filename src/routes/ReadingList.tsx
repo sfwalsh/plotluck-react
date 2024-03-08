@@ -60,7 +60,7 @@ const ReadingList = () => {
         <>
             <Navbar children={<Link className="custom-button action-button" to={`/add`}>Add Item</Link>} />
 
-            <div className="mx-3 mt-3">
+            <div className="mx-4 mt-3">
                 {items.length === 0 && <ReadingListEmptyState />}
                 {
                     items.map(item => {
