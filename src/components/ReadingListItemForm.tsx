@@ -2,13 +2,7 @@ import React from "react";
 
 import { useCallback, useState, useEffect, FormEvent } from "react";
 import { ReadingStatus } from "../types/ReadingStatus.type";
-
-import { Listbox } from '@headlessui/react'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { faCircleChevronDown } from '@fortawesome/free-solid-svg-icons'
+import CustomListbox from "./CustomListbox";
 
 type ReadingListItemFormProps = {
     title: string,
@@ -27,12 +21,6 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
     const [readingStatus, setReadingStatus] = useState(props.readingStatus);
 
     const [formValid, setFormValid] = useState(true);
-
-    const readingStatusOptions: { [key: string]: string } = {
-        [ReadingStatus.Read]: 'Read', // [] rather than literal string maintains a connection between the enum and the options
-        [ReadingStatus.Unread]: 'Unread',
-        [ReadingStatus.InProgress]: 'In Progress',
-    };
 
     const isValidTitle = useCallback(() => {
         return title.length >= 3;
@@ -54,6 +42,34 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
         if (!isValidTitle() || !isValidAuthor()) return;
         props.onSubmit(title, author, readingStatus);
     };
+
+    const readingStatusOptions: string[] = ['Read', 'Unread', 'In Progress']
+    
+    const mapStringToReadingStatus = (string: string): ReadingStatus => {
+        switch (string) {
+            case 'Read':
+                return ReadingStatus.Read;
+            case 'Unread':
+                return ReadingStatus.Unread
+            case 'In Progress':
+                return ReadingStatus.InProgress;
+            default:
+                return ReadingStatus.Read;
+        }
+    };
+
+    const mapReadingStatusToString = (readingStatus: ReadingStatus): string => {
+        switch (readingStatus) {
+            case ReadingStatus.Read:
+                return 'Read';
+            case ReadingStatus.Unread:
+                return 'Unread';
+            case ReadingStatus.InProgress:
+                return 'In Progress';
+            default:
+                return 'Read';
+        }
+    }
 
     return (
 
@@ -93,42 +109,15 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
                         <label className="form-item-label" htmlFor="reading_status">Reading Status</label>
 
                         <div id="reading_status">
-                            <Listbox
-                                value={readingStatus}
-                                onChange={(e) => setReadingStatus(e)}
-                            >
-                                <Listbox.Button className="listbox-button d-flex justify-content-between align-items-center">
-                                    {readingStatusOptions[readingStatus]}
-                                    <FontAwesomeIcon icon={faCircleChevronDown} className="listbox-icon" />
-                                </Listbox.Button>
-
-                                <Listbox.Options className="listbox-option-group mx-0 py-2 my-2">
-                                    {
-                                        Object.entries(readingStatusOptions).map(([value, label]) => (
-
-                                            <Listbox.Option
-                                                className="listbox-option-item"
-                                                key={value}
-                                                value={value}
-                                            >
-                                                {({ active, selected }) => (
-                                                    <li
-                                                        className={`${active ? 'listbox-option-item-content listbox-option-item-content-selected' : 'listbox-option-item-content'
-                                                            }
-                                                            `}
-                                                    >
-                                                        {label}
-                                                        {selected && <FontAwesomeIcon icon={faCheck} className="listbox-icon ms-2" />}
-                                                    </li>
-                                                )}
-                                            </Listbox.Option>
-                                        ))
-                                    }
-                                </Listbox.Options>
-                            </Listbox>
-
+                            <CustomListbox
+                                selectedValue={mapReadingStatusToString(readingStatus)}
+                                setSelectedValue={(e) => {
+                                    const mapped = mapStringToReadingStatus(e);
+                                    setReadingStatus(mapped);
+                                }}
+                                options={readingStatusOptions}
+                            />
                         </div>
-
                     </div>
 
                     <hr className="custom-hr" />
