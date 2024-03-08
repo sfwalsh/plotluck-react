@@ -1,0 +1,24 @@
+.tag {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    font-style: normal;
+  
+    display: inline-block;
+    /* or use display: inline-flex; */
+    width: shrink-wrap;
+    /* Makes the element only as wide as its content */
+    margin: 0;
+  
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  
+    border-radius: 6px;
+    border: 1px solid var(--light-gray-border-color);
+    
+    color: var(--primary-accent-shade-2-color);
+    background-color: var(--primary-accent-tint-2-color);
+  }

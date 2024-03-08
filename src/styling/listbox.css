@@ -1,3 +1,4 @@
+
 .listbox-button {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
@@ -23,9 +24,11 @@
     border: 1px solid var(--light-gray-border-color);
 
     border-radius: 6px;
+    padding-left: 0;
 }
 
 .listbox-option-item {
+    margin-left: 0;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -33,6 +36,17 @@
     list-style: none;
     background-color: white;
     border-radius: 6px;
+
+    
+}
+
+.listbox-option-item-content-selected {
+    color: var(--primary-accent-shade-1-color);
+    background-color: var(--primary-accent-tint-2-color);
+}
+
+.listbox-option-item-content {
+    padding: 0.75rem;
 }
 
 .listbox-button:hover {

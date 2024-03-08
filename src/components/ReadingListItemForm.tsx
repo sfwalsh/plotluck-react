@@ -5,9 +5,9 @@ import { ReadingStatus } from "../types/ReadingStatus.type";
 
 import { Listbox } from '@headlessui/react'
 
-import errorImage from '../images/whoops/error.png';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faCircleChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 type ReadingListItemFormProps = {
@@ -103,15 +103,25 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
                                     <FontAwesomeIcon icon={faCircleChevronDown} className="listbox-icon" />
                                 </Listbox.Button>
 
-                                <Listbox.Options className="listbox-option-group mt-2">
+                                <Listbox.Options className="listbox-option-group mx-0 py-2 my-2">
                                     {
                                         Object.entries(readingStatusOptions).map(([value, label]) => (
+
                                             <Listbox.Option
-                                                className="listbox-option-item my-4"
+                                                className="listbox-option-item"
                                                 key={value}
                                                 value={value}
                                             >
-                                                {label}
+                                                {({ active, selected }) => (
+                                                    <li
+                                                        className={`${active ? 'listbox-option-item-content listbox-option-item-content-selected' : 'listbox-option-item-content'
+                                                            }
+                                                            `}
+                                                    >
+                                                        {label}
+                                                        {selected && <FontAwesomeIcon icon={faCheck} className="listbox-icon ms-2" />}
+                                                    </li>
+                                                )}
                                             </Listbox.Option>
                                         ))
                                     }
