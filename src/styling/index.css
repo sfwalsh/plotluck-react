@@ -70,3 +70,7 @@ label {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
+.loading-indicator {
+  color: var(--primary-accent-color);
+}

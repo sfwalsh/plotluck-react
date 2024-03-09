@@ -72,8 +72,12 @@ const ReadingList = () => {
 
     const handleSearchboxKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && isValidSearchTerm()) {
-            navigate(`/search`, { state: { searchText: searchText }});
+            navigateToSearch();
         }
+    };
+
+    const navigateToSearch = () => {
+        navigate(`/results?search=${searchText}`);
     };
 
     return (
@@ -89,7 +93,11 @@ const ReadingList = () => {
                     type="text"
                     id="searchbox"
                 />
-                <button className="custom-button action-button searchbox-button" disabled={!searchValid}>
+                <button
+                    className="custom-button action-button searchbox-button"
+                    disabled={!searchValid}
+                    onClick={() => navigateToSearch()}
+                >
                     Search
                 </button>
             </div>

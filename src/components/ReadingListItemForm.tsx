@@ -48,7 +48,7 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
 
     return (
 
-        <div className="d-flex justify-content-center my-4 mx-3 mt-3">
+        <div className="d-flex justify-content-center my-4 mx-3">
             <div className="col-12 col-lg-8">
                 <form className="mx-2 mx-md-5" onSubmit={handleSubmit}>
                     <div className="form-group form-item">

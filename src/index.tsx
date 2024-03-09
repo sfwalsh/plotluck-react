@@ -18,7 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import AddItemView from "./routes/AddItemView";
 import EditItemView from "./routes/EditItemView";
-import BookSearchView from "./routes/BookSearchView";
+import BookSearchResultsView from "./routes/BookSearchResultsView";
 
 const router = createBrowserRouter([
   {
@@ -35,8 +35,8 @@ const router = createBrowserRouter([
     element: <EditItemView />,
   },
   {
-    path: "search",
-    element: <BookSearchView />,
+    path: "results",
+    element: <BookSearchResultsView />,
   },
 ]);
 
