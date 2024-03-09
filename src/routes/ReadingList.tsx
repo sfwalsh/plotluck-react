@@ -103,7 +103,14 @@ const ReadingList = () => {
             </div>
 
             <div className="mx-4 mt-3">
-                {items.length === 0 && <ReadingListEmptyState />}
+                {items.length === 0 &&
+                    <ReadingListEmptyState
+                        titleText="You have no items in your collection"
+                        descriptionText="Why not add some now?"
+                        actionElement={
+                            <Link className="btn btn-primary" type="button" to={`/add`}>Add Item</Link>}
+                    />
+                }
                 {
                     items.map(item => {
                         return <ReadingListItemView

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 import Navbar from "../components/Navbar";
 
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { SearchRepository } from "../repository/SearchRepository.interface";
 
 import { container } from "../DI/container";
@@ -37,6 +37,15 @@ const BookSearchResultsView = () => {
         </div>
     };
 
+    const getEmptyState = () => {
+        return <ReadingListEmptyState
+            titleText="No Results Found"
+            descriptionText="Please try again later"
+            actionElement={
+                <Link className="btn btn-primary" type="button" to={`/`}>Home</Link>}
+        />
+    };
+
     const fetchData = useCallback(async () => {
         setLoading((currentLoadingState) => { return true })
         const results = await bookSearchService.fetch(searchText ?? "");
@@ -50,7 +59,7 @@ const BookSearchResultsView = () => {
 
     const handleAddItem = async (item: Book) => {
         // todo: add a way of setting the reading status
-        const result = await readingListService.create({book: item, status: ReadingStatus.Unread});
+        const result = await readingListService.create({ book: item, status: ReadingStatus.Unread });
     };
 
     return (
@@ -63,9 +72,9 @@ const BookSearchResultsView = () => {
                             getLoadingIndicator()
                         ) : (
                             <>
-                                <h4 className="poppins-bold mt-4">{getTitleText()}</h4>
+                                {searchResults.length >0 && <h4 className="poppins-bold mt-4">{getTitleText()}</h4>}
                                 <div className="mt-4">
-                                    {searchResults.length === 0 && <ReadingListEmptyState />}
+                                    {searchResults.length === 0 && getEmptyState()}
                                     {
                                         searchResults.map(searchResult => {
                                             return <BookSearchResultItem

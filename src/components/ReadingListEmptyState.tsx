@@ -1,9 +1,15 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import "../styling/empty-state.css"
 import emptyHeroImage from '../images/emptyState/leaf.png';
 import { Link } from "react-router-dom";
 
-const ReadingListEmptyState = () => {
+type ReadingListEmptyStateProps = {
+    titleText: string;
+    descriptionText: string;
+    actionElement: ReactElement;
+};
+
+const ReadingListEmptyState = (props: ReadingListEmptyStateProps) => {
     return (
         <div className="container">
             <div className="d-flex flex-column align-items-center justify-content-center text-center">
@@ -13,13 +19,11 @@ const ReadingListEmptyState = () => {
                 <div className="center-framed-content mx-3">
                     <img className="top-img" src={emptyHeroImage} />
                     <div>
-                        <h4 className="poppins-bold mt-4">You have no items in your collection</h4>
-                        <p>
-                            Why not add some now?
-                        </p>
+                        <h4 className="poppins-bold mt-4">{props.titleText}</h4>
+                        <p>{props.descriptionText}</p>
                     </div>
                     <div>
-                        <Link className="btn btn-primary" type="button" to={`/add`}>Add Item</Link>
+                        {props.actionElement}
                     </div>
                 </div>
 
