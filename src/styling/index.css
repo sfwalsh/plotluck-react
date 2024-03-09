@@ -3,6 +3,7 @@
 @import "listbox.css";
 @import "colors.css";
 @import "tag.css";
+@import "searchbox.css";
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

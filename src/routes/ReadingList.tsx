@@ -25,6 +25,20 @@ const ReadingList = () => {
     const readingListService = container.get<IRepository<ReadingListItem>>(SERVICE_KEYS.READINGLIST_REPOSITORY);
     const [items, setItems] = useState<ReadingListItem[]>([]);
 
+    const [searchText, setSearchText] = useState("");
+
+    const [searchValid, setSearchValid] = useState(false);
+
+
+    const isValidSearchTerm = useCallback(() => {
+        return searchText.length >= 3;
+    }, [searchText]);
+
+    // search valid
+    useEffect(() => {
+        setSearchValid(() => isValidSearchTerm());
+    }, [isValidSearchTerm]);
+
     /*
      By wrapping the refreshData function in the useCallback Hook,
      you create a memoized version of the function that doesn't change on every render.
@@ -56,9 +70,29 @@ const ReadingList = () => {
         navigate(`/edit/${item.book.isbn}`, { state: { itemToEdit: item } });
     };
 
+    const handleSearchboxKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' && isValidSearchTerm()) {
+            
+        }
+    };
+
     return (
         <>
             <Navbar children={<Link className="custom-button action-button" to={`/add`}>Add Item</Link>} />
+            <div className="d-flex flex-row align-items-center mx-4 my-3">
+                <input
+                    className="searchbox-input flex-grow-1 me-2"
+                    placeholder="Search for books, authors..."
+                    value={searchText}
+                    onChange={(e) => { setSearchText(e.target.value) }}
+                    onKeyDown={handleSearchboxKeyDown}
+                    type="text"
+                    id="searchbox"
+                />
+                <button className="custom-button action-button searchbox-button" disabled={!searchValid}>
+                    Search
+                </button>
+            </div>
 
             <div className="mx-4 mt-3">
                 {items.length === 0 && <ReadingListEmptyState />}

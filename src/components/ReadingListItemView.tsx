@@ -1,7 +1,6 @@
 import React from "react";
 
 import { ReadingListItem } from "../types/ReadingListItem.type"
-import { ReadingStatus } from "../types/ReadingStatus.type"
 import ReadingStatusMapper from "../mappers/ReadingStatusMapper";
 
 type ReadingListItemViewProps = {
