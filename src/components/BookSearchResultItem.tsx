@@ -12,16 +12,20 @@ const BookSearchResultItem = (props: BookSearchResultItemProps) => {
         <>
             <div className="card mt-3">
 
-                <div className="card-body">
-                    <h4 className="my-1 card-title poppins-medium">{props.book.title}</h4>
-                    <p className="mt-1 mb-0 card-text">{props.book.author}</p>
+                <div className="d-flex flex-row align-items-center card-body">
+                    <div className="flex-grow-1 me-2">
+                        <h4 className="my-1 card-title poppins-medium">{props.book.title}</h4>
+                        <p className="mt-1 mb-0 card-text">{props.book.author}</p>
+                    </div>
+                    <button
+                        className="custom-button action-button"
+                        onClick={(e) => { props.addItem(props.book) }}
+                    >
+                        {props.actionButtonText}
+                    </button>
+
                 </div>
-                <button
-                    className="custom-button action-button"
-                    onClick={(e) => {props.addItem(props.book)}}
-                >
-                    {props.actionButtonText}
-                </button>
+
             </div>
         </>
     );
