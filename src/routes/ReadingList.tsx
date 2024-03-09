@@ -72,7 +72,7 @@ const ReadingList = () => {
 
     const handleSearchboxKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && isValidSearchTerm()) {
-            
+            navigate(`/search`, { state: { searchText: searchText }});
         }
     };
 

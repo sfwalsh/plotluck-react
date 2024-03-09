@@ -18,6 +18,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import AddItemView from "./routes/AddItemView";
 import EditItemView from "./routes/EditItemView";
+import BookSearchView from "./routes/BookSearchView";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     path: "edit/:id",
     element: <EditItemView />,
+  },
+  {
+    path: "search",
+    element: <BookSearchView />,
   },
 ]);
 
