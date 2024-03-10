@@ -68,7 +68,7 @@ const BookSearchResultsView = () => {
     useEffect(() => {
         fetchBookSearchResults();
         fetchReadingListItems();
-    }, []);
+    }, [fetchBookSearchResults, fetchReadingListItems]);
 
     const handleAddItem = async (item: Book) => {
         // todo: add a way of setting the reading status
