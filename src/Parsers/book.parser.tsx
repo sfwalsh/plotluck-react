@@ -11,6 +11,9 @@ const findISBN = (identifiers: GoogleBooksIndustryIdentifier[]): string => {
 };
 
 const mapAuthors = (authors: string[]): string => {
+    if (!authors || authors.length === 0) {
+        return "";
+    }
     return authors.join(', ');
 };
 

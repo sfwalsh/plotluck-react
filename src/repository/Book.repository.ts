@@ -13,8 +13,9 @@ export class BookRepository implements SearchRepository<Book> {
         try {
             const baseUrl = "https://www.googleapis.com/books/v1/volumes/";
             const query = `${encodeURIComponent(searchText)}`;
-            const key = `${"AIzaSyDT0W3wkI7uyIWjnEXda0a81jqZFH-EDPs"}`;
-            const url = `${baseUrl}?q=${query}&key=${key}`;
+            const googleBooksApiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
+            console.log(googleBooksApiKey);
+            const url = `${baseUrl}?q=${query}&key=${googleBooksApiKey}`;
 
             const response = await fetch(url);
             if (!response.ok) throw new Error(response.statusText);

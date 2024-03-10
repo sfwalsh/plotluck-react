@@ -48,8 +48,13 @@ const BookSearchResultsView = () => {
 
     const fetchData = useCallback(async () => {
         setLoading((currentLoadingState) => { return true })
-        const results = await bookSearchService.fetch(searchText ?? "");
-        setSearchResults(() => { return results ?? [] });
+        try {
+            const results = await bookSearchService.fetch(searchText ?? "");
+            setSearchResults(() => { return results ?? [] });
+        } catch(e) {
+            // todo push error to user;
+            console.log(e);
+        }
         setLoading(() => { return false })
     }, [bookSearchService, searchText, setLoading, setSearchResults]);
 
