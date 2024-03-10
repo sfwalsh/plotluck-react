@@ -81,7 +81,7 @@ const ReadingListItemForm = (props: ReadingListItemFormProps) => {
                     {/* dropdown */}
 
                     <div className="form-group form-item">
-                        <label className="form-item-label" htmlFor="reading_status">Reading Status</label>
+                        <label className="form-item-label">Reading Status</label>
 
                         <div id="reading_status">
                             <CustomListbox

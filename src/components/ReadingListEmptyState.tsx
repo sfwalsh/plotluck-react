@@ -1,7 +1,6 @@
 import React, { ReactElement } from "react";
 import "../styling/empty-state.css"
 import emptyHeroImage from '../images/emptyState/leaf.png';
-import { Link } from "react-router-dom";
 
 type ReadingListEmptyStateProps = {
     titleText: string;

@@ -29,14 +29,17 @@ const router = createBrowserRouter([
   {
     path: "add",
     element: <AddItemView />,
+    errorElement: <ErrorPage />
   },
   {
     path: "edit/:id",
     element: <EditItemView />,
+    errorElement: <ErrorPage />
   },
   {
     path: "results",
     element: <BookSearchResultsView />,
+    errorElement: <ErrorPage />
   },
 ]);
 

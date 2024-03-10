@@ -81,6 +81,7 @@ const BookSearchResultsView = () => {
                                                 book={searchResult}
                                                 addItem={handleAddItem}
                                                 actionButtonText="Add"
+                                                key={searchResult.isbn}
                                             />
                                         })
                                     }

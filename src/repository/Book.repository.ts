@@ -4,67 +4,28 @@ import { Book } from "../types/Book.type";
 
 import 'reflect-metadata';
 import { SearchRepository } from "./SearchRepository.interface";
+import { GoogleBooksResponseModel } from "../responseModels/GoogleBooksResponseModel.interface";
+import { Parsers } from "../Parsers/book.parser";
 
 @injectable()
 export class BookRepository implements SearchRepository<Book> {
-    fetch(searchText: string): Promise<Book[] | null> {
-        const sampleBooks: Book[] = [
-            {
-                isbn: "978-3-16-148410-0",
-                title: "The Da Vinci Code",
-                author: "Dan Brown",
-            },
-            {
-                isbn: "978-0-06-112008-4",
-                title: "Angels & Demons",
-                author: "Dan Brown",
-            },
-            {
-                isbn: "978-0-141-18729-1",
-                title: "The Magician's Nephew",
-                author: "C. S. Lewis",
-            },
-            {
-                isbn: "978-0-06-054319-9",
-                title: "The Lord of the Rings",
-                author: "J. R. R. Tolkien",
-            },
-            {
-                isbn: "978-0-439-02385-3",
-                title: "The BFG",
-                author: "Roald Dahl",
-            },
-            {
-                isbn: "978-0-141-34847-6",
-                title: "The Great Gatsby",
-                author: "F. Scott Fitzgerald",
-            },
-            {
-                isbn: "978-3-16-148411-7",
-                title: "A Game of Thrones",
-                author: "George R. R. Martin",
-            },
-            {
-                isbn: "978-0-545-91854-4",
-                title: "The Hobbit",
-                author: "J. R. R. Tolkien",
-            },
-            {
-                isbn: "978-0-439-13961-7",
-                title: "James and the Giant Peach",
-                author: "Roald Dahl",
-            },
-            {
-                isbn: "978-0-140-11943-3",
-                title: "One Hundred Years of Solitude",
-                author: "Gabriel García Márquez",
-            },
-        ];
+    async fetch(searchText: string): Promise<Book[] | null> {
+        try {
+            const baseUrl = "https://www.googleapis.com/books/v1/volumes/";
+            const query = `${encodeURIComponent(searchText)}`;
+            const key = `${"AIzaSyDT0W3wkI7uyIWjnEXda0a81jqZFH-EDPs"}`;
+            const url = `${baseUrl}?q=${query}&key=${key}`;
 
-        return new Promise<Book[] | null>((resolve) => {
-            setTimeout(() => {
-                resolve(sampleBooks);
-            }, 1000); // Delay in milliseconds (1000 ms = 1 second)
-        });
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(response.statusText);
+
+            const json = await response.json();
+            const data = json as GoogleBooksResponseModel;
+            const books = Parsers.googleBooksParser(data);
+
+            return books;
+        } catch (e) {
+            throw Error(`Error in BookSearchRepository with error ${e}`);
+        }
     }
 }

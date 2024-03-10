@@ -32,14 +32,14 @@ const CustomListbox = (props: CustomListboxProps) => {
                             value={value}
                         >
                             {({ active, selected }) => (
-                                <li
+                                <div
                                     className={`${active ? 'listbox-option-item-content listbox-option-item-content-selected' : 'listbox-option-item-content'
                                         }
                                                             `}
                                 >
                                     {value}
                                     {selected && <FontAwesomeIcon icon={faCheck} className="listbox-icon ms-2" />}
-                                </li>
+                                </div>
                             )}
                         </Listbox.Option>
                     ))
