@@ -58,7 +58,10 @@ export class ReadingListRepository implements IRepository<ReadingListItem> {
         }
     }
 
-    private updateItems(items: ReadingListItem[]) {
-        localStorage.setItem(this.readingListItemStorageKey, JSON.stringify(items))
+    private async updateItems(items: ReadingListItem[]): Promise<void> {
+        return new Promise((resolve) => {
+            localStorage.setItem(this.readingListItemStorageKey, JSON.stringify(items))
+            resolve();
+          });
     }
 }
