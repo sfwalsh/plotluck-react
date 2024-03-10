@@ -1,0 +1,27 @@
+@import "colors.css";
+
+.book-cover-container {
+    width: 96px;
+    height: 144px;
+    position: relative;
+    overflow: hidden;
+}
+
+.book-cover-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.book-cover-placeholder {
+    background-color: var(--primary-accent-tint-2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

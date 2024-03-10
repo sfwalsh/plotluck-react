@@ -22,7 +22,8 @@ const AddItemView = () => {
             book: {
                 author: author,
                 title: title,
-                isbn: crypto.randomUUID()
+                isbn: crypto.randomUUID(), 
+                imageURL: null
             },
             status: readingStatus
         };

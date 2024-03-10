@@ -1,7 +1,7 @@
 import { GoogleBooksResponseModel } from "../responseModels/GoogleBooksResponseModel.interface";
 import { Book } from "../types/Book.type";
 
-import { GoogleBooksIndustryIdentifier } from "../responseModels/GoogleBooksResponseModel.interface";
+import { GoogleBooksIndustryIdentifier, GoogleBooksImageLinks } from "../responseModels/GoogleBooksResponseModel.interface";
 
 const findISBN = (identifiers: GoogleBooksIndustryIdentifier[]): string => {
     if (!identifiers || identifiers.length === 0) {
@@ -17,6 +17,13 @@ const mapAuthors = (authors: string[]): string => {
     return authors.join(', ');
 };
 
+const mapImageThumbnail = (imageLinks: GoogleBooksImageLinks | null): string | null => {
+    if (! imageLinks) {
+        return null;
+    }
+    return imageLinks.thumbnail || imageLinks.smallThumbnail || null;
+};
+
 const GoogleBooksParser = (result: GoogleBooksResponseModel): Book[] => {
     if (!result.items || result.items.length === 0) {
         return [];
@@ -26,7 +33,8 @@ const GoogleBooksParser = (result: GoogleBooksResponseModel): Book[] => {
         return {
             isbn: findISBN(item.volumeInfo.industryIdentifiers),
             title: item.volumeInfo.title,
-            author: mapAuthors(item.volumeInfo.authors)
+            author: mapAuthors(item.volumeInfo.authors),
+            imageURL: mapImageThumbnail(item.volumeInfo.imageLinks)
         }
     });
 };

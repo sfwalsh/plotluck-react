@@ -14,9 +14,15 @@ export interface GoogleBooksResponseModel {
     authors: string[];
     description: string;
     industryIdentifiers: GoogleBooksIndustryIdentifier[];
+    imageLinks: GoogleBooksImageLinks | null;
   }
   
   export interface GoogleBooksIndustryIdentifier {
     type: string;
     identifier: string;
+  }
+
+  export interface GoogleBooksImageLinks {
+    thumbnail: string | null;
+    smallThumbnail: string | null;
   }
