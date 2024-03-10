@@ -20,10 +20,10 @@ const BookSearchResultsView = () => {
 
     const [loading, setLoading] = useState(false);
     const [searchResults, setSearchResults] = useState<Book[]>([]);
+    const [readingListItems, setReadingListItems] = useState<ReadingListItem[]>([]);
 
     const bookSearchService = container.get<SearchRepository<Book>>(SERVICE_KEYS.BOOKSEARCH_REPOSITORY);
     const readingListService = container.get<IRepository<ReadingListItem>>(SERVICE_KEYS.READINGLIST_REPOSITORY);
-
 
     const getTitleText = () => {
         return `Search Results for "${searchText}"`
@@ -46,25 +46,39 @@ const BookSearchResultsView = () => {
         />
     };
 
-    const fetchData = useCallback(async () => {
+    const fetchBookSearchResults = useCallback(async () => {
         setLoading((currentLoadingState) => { return true })
         try {
             const results = await bookSearchService.fetch(searchText ?? "");
             setSearchResults(() => { return results ?? [] });
-        } catch(e) {
+        } catch (e) {
             // todo push error to user;
             console.log(e);
         }
         setLoading(() => { return false })
     }, [bookSearchService, searchText, setLoading, setSearchResults]);
 
+    const fetchReadingListItems = useCallback(async () => {
+        const items = await readingListService.getAll();
+        setReadingListItems(() => {
+            return items ?? [];
+        });
+    }, [readingListService, setReadingListItems]);
+
     useEffect(() => {
-        fetchData();
-    }, [fetchData]);
+        fetchBookSearchResults();
+        fetchReadingListItems();
+    }, []);
 
     const handleAddItem = async (item: Book) => {
         // todo: add a way of setting the reading status
-        const result = await readingListService.create({ book: item, status: ReadingStatus.Unread });
+        await readingListService.create({ book: item, status: ReadingStatus.Unread });
+        await fetchReadingListItems();
+    };
+
+    const handleRemoveItem = async (item: Book) => {
+        await readingListService.delete(item.isbn);
+        await fetchReadingListItems();
     };
 
     return (
@@ -77,15 +91,19 @@ const BookSearchResultsView = () => {
                             getLoadingIndicator()
                         ) : (
                             <>
-                                {searchResults.length >0 && <h4 className="poppins-bold mt-4">{getTitleText()}</h4>}
+                                {searchResults.length > 0 && <h4 className="poppins-bold mt-4">{getTitleText()}</h4>}
                                 <div className="mt-4">
                                     {searchResults.length === 0 && getEmptyState()}
                                     {
                                         searchResults.map(searchResult => {
                                             return <BookSearchResultItem
                                                 book={searchResult}
-                                                addItem={handleAddItem}
-                                                actionButtonText="Add"
+                                                callToAction={
+                                                    (readingListItems.some(item => item.book.isbn === searchResult.isbn) ? handleRemoveItem : handleAddItem)
+                                                }
+                                                actionButtonText={
+                                                    (readingListItems.some(item => item.book.isbn === searchResult.isbn) ? "Added" : "Add")
+                                                }
                                                 key={searchResult.isbn}
                                             />
                                         })

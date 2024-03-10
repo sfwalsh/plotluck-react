@@ -5,7 +5,7 @@ import BookCoverView from "./BookCoverView";
 type BookSearchResultItemProps = {
     book: Book;
     actionButtonText: string;
-    addItem: (book: Book) => void;
+    callToAction: (book: Book) => void;
 };
 
 const BookSearchResultItem = (props: BookSearchResultItemProps) => {
@@ -31,7 +31,7 @@ const BookSearchResultItem = (props: BookSearchResultItemProps) => {
 
                         <button
                             className="custom-button action-button"
-                            onClick={(e) => { props.addItem(props.book) }}
+                            onClick={(e) => { props.callToAction(props.book) }}
                         >
                             {props.actionButtonText}
                         </button>
