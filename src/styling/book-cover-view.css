@@ -17,7 +17,7 @@
 }
 
 .book-cover-placeholder {
-    background-color: var(--primary-accent-tint-2);
+    background-color: var(--gray-shade-3);
     position: absolute;
     top: 0;
     left: 0;

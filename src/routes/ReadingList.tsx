@@ -102,7 +102,7 @@ const ReadingList = () => {
                 </button>
             </div>
 
-            <div className="mx-4 mt-3">
+            <div className="mx-4 mt-3 mb-5">
                 {items.length === 0 &&
                     <ReadingListEmptyState
                         titleText="You have no items in your collection"
